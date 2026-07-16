@@ -5,7 +5,7 @@ import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
   MessageCircle, MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
-  Menu, X,
+  Menu, X, Check, Star,
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
@@ -86,6 +86,7 @@ const NAV = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Pricing", href: "#pricing" },
   { label: "Projects", href: "#projects" },
   { label: "Process", href: "#process" },
   { label: "Team", href: "#team" },
@@ -646,19 +647,33 @@ function Contact() {
             <p className="mt-4 text-muted-foreground max-w-md">Tell us about your project. We usually respond within a day.</p>
             <div className="mt-8 grid gap-3">
               {[
-                { icon: Mail, label: "hello@designtintstudio.com" },
-                { icon: Instagram, label: "@designtintstudio" },
-                { icon: Linkedin, label: "Design Tint Studio" },
-                { icon: MessageCircle, label: "+91 00000 00000 (WhatsApp)" },
+                { icon: Mail, label: "contact.designtintstudio@gmail.com", href: "mailto:contact.designtintstudio@gmail.com" },
+                { icon: Instagram, label: "@design_tint_studio", href: "https://instagram.com/design_tint_studio" },
+                { icon: MessageCircle, label: "+91 78069 62346", href: "https://wa.me/917806962346" },
                 { icon: MapPin, label: "Tamil Nadu, India" },
               ].map((c) => (
-                <div key={c.label} className="glass flex items-center gap-3 rounded-2xl px-4 py-3">
+                <a
+                  key={c.label}
+                  href={c.href || "#"}
+                  target={c.href && c.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  className="glass flex items-center gap-3 rounded-2xl px-4 py-3 hover:-translate-y-0.5 transition"
+                >
                   <div className="grid h-10 w-10 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white">
                     <c.icon className="h-4 w-4" />
                   </div>
-                  <span className="text-sm">{c.label}</span>
-                </div>
+                  <span className="text-sm break-all">{c.label}</span>
+                </a>
               ))}
+              <a
+                href="https://wa.me/917806962346"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_50px_-15px_rgba(37,211,102,0.6)] transition hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
+              >
+                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+              </a>
             </div>
           </div>
         </Reveal>
@@ -792,6 +807,7 @@ function LandingPage() {
         <About />
         <Services />
         <WhyUs />
+        <Pricing />
         <Projects />
         <Process />
         <Team />
