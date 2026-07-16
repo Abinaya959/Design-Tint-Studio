@@ -5,7 +5,7 @@ import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
   MessageCircle, MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
-  Menu, X,
+  Menu, X, Check, Star,
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
@@ -86,6 +86,7 @@ const NAV = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Pricing", href: "#pricing" },
   { label: "Projects", href: "#projects" },
   { label: "Process", href: "#process" },
   { label: "Team", href: "#team" },
@@ -646,19 +647,33 @@ function Contact() {
             <p className="mt-4 text-muted-foreground max-w-md">Tell us about your project. We usually respond within a day.</p>
             <div className="mt-8 grid gap-3">
               {[
-                { icon: Mail, label: "hello@designtintstudio.com" },
-                { icon: Instagram, label: "@designtintstudio" },
-                { icon: Linkedin, label: "Design Tint Studio" },
-                { icon: MessageCircle, label: "+91 00000 00000 (WhatsApp)" },
+                { icon: Mail, label: "contact.designtintstudio@gmail.com", href: "mailto:contact.designtintstudio@gmail.com" },
+                { icon: Instagram, label: "@design_tint_studio", href: "https://instagram.com/design_tint_studio" },
+                { icon: MessageCircle, label: "+91 78069 62346", href: "https://wa.me/917806962346" },
                 { icon: MapPin, label: "Tamil Nadu, India" },
               ].map((c) => (
-                <div key={c.label} className="glass flex items-center gap-3 rounded-2xl px-4 py-3">
+                <a
+                  key={c.label}
+                  href={c.href || "#"}
+                  target={c.href && c.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  className="glass flex items-center gap-3 rounded-2xl px-4 py-3 hover:-translate-y-0.5 transition"
+                >
                   <div className="grid h-10 w-10 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white">
                     <c.icon className="h-4 w-4" />
                   </div>
-                  <span className="text-sm">{c.label}</span>
-                </div>
+                  <span className="text-sm break-all">{c.label}</span>
+                </a>
               ))}
+              <a
+                href="https://wa.me/917806962346"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_50px_-15px_rgba(37,211,102,0.6)] transition hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
+              >
+                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+              </a>
             </div>
           </div>
         </Reveal>
@@ -711,6 +726,132 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground">{label}</span>
       {children}
     </label>
+  );
+}
+
+/* ---------- Pricing ---------- */
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScppLGerdaw_FM5U2cyYB36r27HU5pwP6WznAG_Q2s6xtEI7A/viewform?usp=header";
+
+const PRICING = [
+  { emoji: "💻", icon: Code2, title: "Web Development", price: "₹1,500 – ₹5,000", popular: true,
+    features: ["Landing Pages", "Portfolio Websites", "Business Websites", "Responsive Design", "Basic SEO", "Fast Delivery"] },
+  { emoji: "🎨", icon: Palette, title: "Graphic Design & Branding", price: "₹500 – ₹2,000",
+    features: ["Logo Design", "Visiting Cards", "Posters", "Flyers", "Brochures", "Letterheads"] },
+  { emoji: "🎬", icon: Clapperboard, title: "Video Editing & AI Videos", price: "₹500 – ₹3,000",
+    features: ["AI Videos", "Reels", "Shorts", "Motion Graphics", "Video Editing"] },
+  { emoji: "📱", icon: Megaphone, title: "Content & Social Media", price: "₹1,000 – ₹3,500",
+    features: ["Social Media Promotion", "Content Writing", "Caption Writing", "Post Design", "Content Creation"] },
+];
+
+function Pricing() {
+  const [openPlan, setOpenPlan] = useState<string | null>(null);
+  return (
+    <section id="pricing" className="relative py-24 md:py-32">
+      <FloatingShapes />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="text-center max-w-2xl mx-auto">
+          <Reveal><SectionKicker>Pricing</SectionKicker></Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-3 text-4xl md:text-5xl font-bold">Simple, <span className="gradient-text">transparent</span> pricing</h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-4 text-muted-foreground">Premium quality, honest starting prices. Pick the plan that fits your goals.</p>
+          </Reveal>
+        </div>
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PRICING.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="group relative h-full"
+              >
+                {p.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-[var(--shadow-glow)] bg-[image:var(--gradient-brand)]">
+                    <Star className="h-3 w-3 fill-white" /> Most Popular
+                  </div>
+                )}
+                <div className="absolute -inset-px rounded-3xl bg-[image:var(--gradient-brand)] opacity-0 group-hover:opacity-70 blur-md transition duration-500" />
+                <div className="relative glass h-full rounded-3xl p-7 flex flex-col overflow-hidden ring-1 ring-transparent group-hover:ring-primary/40 transition">
+                  <div className="absolute -top-24 -right-24 h-52 w-52 rounded-full bg-[image:var(--gradient-brand)] opacity-0 group-hover:opacity-30 blur-3xl transition duration-700" />
+                  <div className="flex items-center gap-3">
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
+                      <p.icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-2xl" aria-hidden>{p.emoji}</span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
+                  <div className="mt-4">
+                    <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground">Starting Price</div>
+                    <div className="mt-1 text-2xl font-display font-extrabold gradient-text">{p.price}</div>
+                  </div>
+                  <ul className="mt-5 grid gap-2 text-sm text-muted-foreground flex-1">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() => setOpenPlan(p.title)}
+                    className="mt-6 btn-glow inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+                  >
+                    Choose Plan <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+      <InquiryModal open={!!openPlan} plan={openPlan} onClose={() => setOpenPlan(null)} />
+    </section>
+  );
+}
+
+function InquiryModal({ open, plan, onClose }: { open: boolean; plan: string | null; onClose: () => void }) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [open, onClose]);
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-[100] grid place-items-center p-4">
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="absolute inset-0 bg-background/70 backdrop-blur-md" onClick={onClose}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 24 }}
+        className="relative glass w-full max-w-md rounded-3xl p-8 text-center shadow-[var(--shadow-glow)]"
+      >
+        <button aria-label="Close" onClick={onClose}
+          className="absolute top-4 right-4 grid h-9 w-9 place-items-center rounded-full border border-border hover:bg-foreground/5 transition">
+          <X className="h-4 w-4" />
+        </button>
+        <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
+          <Sparkles className="h-6 w-6" />
+        </div>
+        <h3 className="mt-5 text-2xl font-bold">Project Inquiry</h3>
+        {plan && <div className="mt-2 text-sm text-muted-foreground">Selected plan: <span className="font-semibold text-foreground">{plan}</span></div>}
+        <p className="mt-4 text-sm text-muted-foreground">Share your project details and we'll get back to you within 24 hours.</p>
+        <a
+          href={GOOGLE_FORM_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={onClose}
+          className="mt-6 btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold"
+        >
+          Open Project Inquiry Form <ExternalLink className="h-4 w-4" />
+        </a>
+        <div className="mt-3 text-[11px] text-muted-foreground">Opens Google Form in a new tab</div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -792,6 +933,7 @@ function LandingPage() {
         <About />
         <Services />
         <WhyUs />
+        <Pricing />
         <Projects />
         <Process />
         <Team />
