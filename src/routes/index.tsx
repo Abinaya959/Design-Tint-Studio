@@ -116,11 +116,9 @@ function Navbar({ theme, toggle }: { theme: "light" | "dark"; toggle: () => void
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
         <div className={`glass flex items-center justify-between px-4 sm:px-6 py-3 ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#home" className="flex items-center gap-2 min-w-0">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
-              <Sparkles className="h-5 w-5" />
-            </span>
+            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 shrink-0 object-contain" />
             <span className="font-display text-lg font-bold tracking-tight truncate">
-              Design<span className="gradient-text">Tint</span>
+              Design<span className="gradient-text">Tint</span> Studio
             </span>
           </a>
           <nav className="hidden lg:flex items-center gap-1">
