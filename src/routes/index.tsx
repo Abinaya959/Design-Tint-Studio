@@ -490,46 +490,52 @@ function Projects() {
             <h2 className="mt-3 text-4xl md:text-5xl font-bold">Featured <span className="gradient-text">Projects</span></h2>
           </Reveal>
         </div>
-        <div className="mt-14 grid lg:grid-cols-3 gap-6">
+        <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <Reveal>
-            <div className="lg:col-span-2 glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition">
-              <div className="relative bg-[image:var(--gradient-brand)]/10 p-8">
-                <img src={santhiImg} alt="Santhi Polyclinic website preview" loading="lazy" width={1200} height={900} className="w-full h-auto animate-float" />
+            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6">
+                <img src={santhiImg} alt="Santhi Polyclinic website preview" loading="lazy" width={1200} height={900} className="w-full h-auto animate-float rounded-xl" />
               </div>
-              <div className="p-8">
+              <div className="p-8 flex flex-col flex-1">
                 <div className="flex flex-wrap gap-2 mb-3">
                   <Tag>Healthcare</Tag>
                   <Tag>Web Design</Tag>
                   <Tag>Responsive</Tag>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold">Santhi Polyclinic Website</h3>
-                <p className="mt-3 text-muted-foreground max-w-2xl">
-                  A professional healthcare website designed for Santhi Polyclinic with a clean interface, responsive design, service pages, and patient-friendly experience.
+                <h3 className="text-2xl font-bold">Santhi Polyclinic Website</h3>
+                <p className="mt-3 text-muted-foreground flex-1">
+                  A professional healthcare website designed for Santhi Polyclinic with a clean UI, responsive design, patient-friendly experience, service pages, and appointment-focused layout.
                 </p>
                 <a href="https://santhi-polyclinic.netlify.app/" target="_blank" rel="noreferrer"
-                  className="mt-6 btn-glow inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
+                  className="mt-6 btn-glow inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold self-start">
                   Live Website <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
             </div>
           </Reveal>
-          <div className="grid gap-6">
-            {[1, 2].map((n, i) => (
-              <Reveal key={n} delay={0.1 * i}>
-                <div className="glass rounded-3xl p-8 h-full flex flex-col justify-between min-h-[240px] relative overflow-hidden">
-                  <div className="absolute inset-0 -z-10 opacity-40 bg-[image:var(--gradient-brand)] blur-3xl" />
-                  <div>
-                    <Tag>Coming Soon</Tag>
-                    <h3 className="mt-4 text-xl font-bold">Project Slot #{n}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">A new case study is on the way. Your brand could be featured here next.</p>
-                  </div>
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Reserve this slot <ArrowRight className="h-4 w-4" />
-                  </div>
+          <Reveal delay={0.1}>
+            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 flex justify-center">
+                <img src={fancyImg} alt="Fancy Corner Instagram marketing preview" loading="lazy" className="max-h-[420px] w-auto animate-float rounded-xl shadow-[var(--shadow-glow)]" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Tag>Social Media Marketing</Tag>
+                  <Tag>Graphic Design</Tag>
+                  <Tag>Content Creation</Tag>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+                <h3 className="text-2xl font-bold">Fancy Corner Instagram Marketing</h3>
+                <p className="mt-3 text-muted-foreground flex-1">
+                  Designed and managed Instagram promotional content for Fancy Corner — including product posters, reels, captions, branding, promotional campaigns, and engaging social media creatives to increase brand awareness and customer engagement.
+                </p>
+                <ul className="mt-4 grid sm:grid-cols-2 gap-y-1.5 gap-x-4 text-sm text-muted-foreground">
+                  {["Instagram Post Designs","Promotional Posters","Product Branding","Reels & Short Videos","Caption Writing","Social Media Strategy"].map((f) => (
+                    <li key={f} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />{f}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
