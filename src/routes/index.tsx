@@ -288,29 +288,45 @@ const SERVICES = [
     icon: Code2,
     title: "Web Development",
     desc: "Modern, fast, responsive websites tailored to your goals.",
-    items: ["Business Websites", "Portfolio Websites", "Landing Pages", "Custom Development"],
+    items: [
+      "Business Websites", "Portfolio Websites", "Landing Pages", "Personal Websites",
+      "Startup Websites", "Custom Website Development", "Responsive Design", "SEO Friendly",
+      "Fast Performance", "Mobile Optimized", "Domain & Hosting Guidance", "Maintenance Support",
+    ],
   },
   {
     icon: Palette,
     title: "Graphic Design & Branding",
     desc: "Bold identities and print collateral that stand out.",
-    items: ["Logo Design", "Visiting Cards", "Posters & Banners", "Brochures & Flyers", "Letterheads", "Business Profiles"],
+    items: [
+      "Logo Design", "Brand Identity", "Visiting Cards", "Posters", "Banners", "Flyers",
+      "Brochures", "Letterheads", "Business Profiles", "Social Media Designs", "Print Ready Files",
+    ],
   },
   {
     icon: Clapperboard,
     title: "Video Editing & AI Videos",
     desc: "Cinematic edits and AI-powered motion for every platform.",
-    items: ["Video Editing", "AI Videos", "Motion Graphics", "Instagram Reels", "YouTube Shorts"],
+    items: [
+      "Professional Video Editing", "AI Generated Videos", "Product Videos", "Promotional Videos",
+      "Motion Graphics", "Instagram Reels", "YouTube Shorts", "Business Ads", "Cinematic Editing",
+      "Thumbnail Design",
+    ],
   },
   {
     icon: Megaphone,
-    title: "Content & Social Media",
+    title: "Content Creation & Social Media Marketing",
     desc: "Strategy, posts, and copy that grow your audience.",
-    items: ["Social Media Promotion", "Post Design", "Content Writing", "Caption Writing", "Content Creation"],
+    items: [
+      "Social Media Management", "Instagram Marketing", "Facebook Marketing", "Content Writing",
+      "Caption Writing", "Post Design", "Creative Campaigns", "Branding Strategy",
+      "Monthly Content Planning", "Engagement Growth",
+    ],
   },
 ];
 
 function Services() {
+  const [openService, setOpenService] = useState<number | null>(null);
   return (
     <section id="services" className="relative py-24 md:py-32 bg-hero">
       <FloatingShapes />
@@ -339,22 +355,91 @@ function Services() {
                   </div>
                 </div>
                 <ul className="mt-6 grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
-                  {s.items.map((it) => (
+                  {s.items.slice(0, 6).map((it) => (
                     <li key={it} className="flex items-center gap-2 text-muted-foreground">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {it}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Learn more
+                <button
+                  onClick={() => setOpenService(i)}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
+                >
+                  Learn More
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </div>
+                </button>
               </div>
             </Reveal>
           ))}
         </div>
       </div>
+      <ServiceModal
+        service={openService !== null ? SERVICES[openService] : null}
+        onClose={() => setOpenService(null)}
+      />
     </section>
+  );
+}
+
+function ServiceModal({
+  service,
+  onClose,
+}: {
+  service: (typeof SERVICES)[number] | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!service) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [service, onClose]);
+  if (!service) return null;
+  const Icon = service.icon;
+  return (
+    <div className="fixed inset-0 z-[100] grid place-items-center p-4">
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="absolute inset-0 bg-background/70 backdrop-blur-md" onClick={onClose}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 240, damping: 24 }}
+        className="relative glass w-full max-w-2xl rounded-3xl p-8 md:p-10 shadow-[var(--shadow-glow)] max-h-[85vh] overflow-y-auto"
+      >
+        <button aria-label="Close" onClick={onClose}
+          className="absolute top-4 right-4 grid h-9 w-9 place-items-center rounded-full border border-border hover:bg-foreground/5 transition">
+          <X className="h-4 w-4" />
+        </button>
+        <div className="flex items-start gap-4">
+          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
+            <Icon className="h-6 w-6" />
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-2xl md:text-3xl font-bold">{service.title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{service.desc}</p>
+          </div>
+        </div>
+        <ul className="mt-8 grid sm:grid-cols-2 gap-3">
+          {service.items.map((it) => (
+            <li key={it} className="flex items-start gap-2 text-sm">
+              <Check className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+        <a
+          href={GOOGLE_FORM_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={onClose}
+          className="mt-8 btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold"
+        >
+          Book Your Project <ExternalLink className="h-4 w-4" />
+        </a>
+      </motion.div>
+    </div>
   );
 }
 
