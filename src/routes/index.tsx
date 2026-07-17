@@ -694,13 +694,13 @@ function Contact() {
             onSubmit={onSubmit}
             className="glass p-6 md:p-8 rounded-3xl grid gap-4"
           >
-            <Field label="Name"><input required name="name" className="input-el" placeholder="Your name" /></Field>
+            <Field label="Name"><input required name="from_name" className="input-el" placeholder="Your name" /></Field>
             <div className="grid sm:grid-cols-2 gap-4">
-              <Field label="Email"><input required name="email" type="email" className="input-el" placeholder="you@brand.com" /></Field>
+              <Field label="Email"><input required name="from_email" type="email" className="input-el" placeholder="you@brand.com" /></Field>
               <Field label="Phone Number"><input name="phone" className="input-el" placeholder="+91 ..." /></Field>
             </div>
             <Field label="Project Requirement">
-              <select name="requirement" className="input-el">
+              <select name="service" className="input-el">
                 <option>Web Development</option>
                 <option>Branding & Design</option>
                 <option>Video / AI Video</option>
