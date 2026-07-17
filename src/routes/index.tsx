@@ -232,7 +232,7 @@ function Hero() {
 function About() {
   const stats = [
     { k: 2, s: "+", label: "Years Experience", icon: Timer },
-    { k: 50, s: "+", label: "Projects Delivered", icon: Rocket },
+    { k: 10, s: "+", label: "Projects Delivered", icon: Rocket },
     { k: 100, s: "%", label: "Client Satisfaction", icon: BadgeCheck },
     { k: 24, s: "/7", label: "Fast Delivery", icon: Zap },
   ];
