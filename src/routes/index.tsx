@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
+import fancyImg from "@/assets/project-fancy-corner.png";
 import logoAsset from "@/assets/design-tint-logo.png.asset.json";
 
 const LOGO_URL = logoAsset.url;
