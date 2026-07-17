@@ -1,14 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
-  MessageCircle, MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
+  MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
   Menu, X, Check, Star,
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
+import logoAsset from "@/assets/design-tint-logo.png.asset.json";
+
+const LOGO_URL = logoAsset.url;
+const EMAILJS = {
+  serviceId: "service_cf8nyl9",
+  templateId: "template_3wj7wvo",
+  publicKey: "HgBatByBKmFahpQoJ",
+};
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -107,11 +116,9 @@ function Navbar({ theme, toggle }: { theme: "light" | "dark"; toggle: () => void
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
         <div className={`glass flex items-center justify-between px-4 sm:px-6 py-3 ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#home" className="flex items-center gap-2 min-w-0">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
-              <Sparkles className="h-5 w-5" />
-            </span>
+            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 shrink-0 object-contain" />
             <span className="font-display text-lg font-bold tracking-tight truncate">
-              Design<span className="gradient-text">Tint</span>
+              Design<span className="gradient-text">Tint</span> Studio
             </span>
           </a>
           <nav className="hidden lg:flex items-center gap-1">
@@ -635,7 +642,21 @@ function CTA() {
 
 /* ---------- Contact ---------- */
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(EMAILJS.serviceId, EMAILJS.templateId, formRef.current, { publicKey: EMAILJS.publicKey });
+      setStatus("sent");
+      formRef.current.reset();
+    } catch (err) {
+      console.error("EmailJS error", err);
+      setStatus("error");
+    }
+  };
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-hero">
       <FloatingShapes />
@@ -649,7 +670,6 @@ function Contact() {
               {[
                 { icon: Mail, label: "contact.designtintstudio@gmail.com", href: "mailto:contact.designtintstudio@gmail.com" },
                 { icon: Instagram, label: "@design_tint_studio", href: "https://instagram.com/design_tint_studio" },
-                { icon: MessageCircle, label: "+91 78069 62346", href: "https://wa.me/917806962346" },
                 { icon: MapPin, label: "Tamil Nadu, India" },
               ].map((c) => (
                 <a
@@ -665,30 +685,22 @@ function Contact() {
                   <span className="text-sm break-all">{c.label}</span>
                 </a>
               ))}
-              <a
-                href="https://wa.me/917806962346"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_50px_-15px_rgba(37,211,102,0.6)] transition hover:-translate-y-0.5"
-                style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
-              >
-                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
-              </a>
             </div>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            ref={formRef}
+            onSubmit={onSubmit}
             className="glass p-6 md:p-8 rounded-3xl grid gap-4"
           >
-            <Field label="Name"><input required className="input-el" placeholder="Your name" /></Field>
+            <Field label="Name"><input required name="name" className="input-el" placeholder="Your name" /></Field>
             <div className="grid sm:grid-cols-2 gap-4">
-              <Field label="Email"><input required type="email" className="input-el" placeholder="you@brand.com" /></Field>
-              <Field label="Phone Number"><input className="input-el" placeholder="+91 ..." /></Field>
+              <Field label="Email"><input required name="email" type="email" className="input-el" placeholder="you@brand.com" /></Field>
+              <Field label="Phone Number"><input name="phone" className="input-el" placeholder="+91 ..." /></Field>
             </div>
             <Field label="Project Requirement">
-              <select className="input-el">
+              <select name="requirement" className="input-el">
                 <option>Web Development</option>
                 <option>Branding & Design</option>
                 <option>Video / AI Video</option>
@@ -696,10 +708,15 @@ function Contact() {
                 <option>Other</option>
               </select>
             </Field>
-            <Field label="Message"><textarea rows={4} className="input-el resize-none" placeholder="Tell us about your project..." /></Field>
-            <button type="submit" className="btn-glow inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
-              {sent ? "Message Sent ✓" : (<>Send Message <ArrowRight className="h-4 w-4" /></>)}
+            <Field label="Message"><textarea rows={4} name="message" required className="input-el resize-none" placeholder="Tell us about your project..." /></Field>
+            <button type="submit" disabled={status === "sending"} className="btn-glow inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold disabled:opacity-70">
+              {status === "sending" && "Sending..."}
+              {status === "sent" && "Message Sent ✓"}
+              {status === "error" && "Try Again — Send Failed"}
+              {status === "idle" && (<>Send Message <ArrowRight className="h-4 w-4" /></>)}
             </button>
+            {status === "sent" && <p className="text-xs text-primary text-center">Thanks! We'll reply within 24 hours.</p>}
+            {status === "error" && <p className="text-xs text-destructive text-center">Something went wrong. Please email us directly.</p>}
           </form>
         </Reveal>
       </div>
@@ -862,9 +879,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white">
-              <Sparkles className="h-5 w-5" />
-            </span>
+            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 object-contain" />
             <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Studio</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">Design • Develop • Grow</p>
@@ -881,7 +896,7 @@ function Footer() {
         <div>
           <h4 className="font-bold">Follow</h4>
           <div className="mt-4 flex gap-2">
-            {[Instagram, Linkedin, Mail, MessageCircle].map((I, idx) => (
+            {[Instagram, Linkedin, Mail].map((I, idx) => (
               <a key={idx} href="#contact" className="grid h-10 w-10 place-items-center rounded-full glass hover:-translate-y-0.5 transition" aria-label="social">
                 <I className="h-4 w-4" />
               </a>
