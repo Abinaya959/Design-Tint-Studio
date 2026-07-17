@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
+import fancyImg from "@/assets/project-fancy-corner.png";
 import logoAsset from "@/assets/design-tint-logo.png.asset.json";
 
 const LOGO_URL = logoAsset.url;
@@ -231,7 +232,7 @@ function Hero() {
 function About() {
   const stats = [
     { k: 2, s: "+", label: "Years Experience", icon: Timer },
-    { k: 50, s: "+", label: "Projects Delivered", icon: Rocket },
+    { k: 10, s: "+", label: "Projects Delivered", icon: Rocket },
     { k: 100, s: "%", label: "Client Satisfaction", icon: BadgeCheck },
     { k: 24, s: "/7", label: "Fast Delivery", icon: Zap },
   ];
@@ -287,29 +288,45 @@ const SERVICES = [
     icon: Code2,
     title: "Web Development",
     desc: "Modern, fast, responsive websites tailored to your goals.",
-    items: ["Business Websites", "Portfolio Websites", "Landing Pages", "Custom Development"],
+    items: [
+      "Business Websites", "Portfolio Websites", "Landing Pages", "Personal Websites",
+      "Startup Websites", "Custom Website Development", "Responsive Design", "SEO Friendly",
+      "Fast Performance", "Mobile Optimized", "Domain & Hosting Guidance", "Maintenance Support",
+    ],
   },
   {
     icon: Palette,
     title: "Graphic Design & Branding",
     desc: "Bold identities and print collateral that stand out.",
-    items: ["Logo Design", "Visiting Cards", "Posters & Banners", "Brochures & Flyers", "Letterheads", "Business Profiles"],
+    items: [
+      "Logo Design", "Brand Identity", "Visiting Cards", "Posters", "Banners", "Flyers",
+      "Brochures", "Letterheads", "Business Profiles", "Social Media Designs", "Print Ready Files",
+    ],
   },
   {
     icon: Clapperboard,
     title: "Video Editing & AI Videos",
     desc: "Cinematic edits and AI-powered motion for every platform.",
-    items: ["Video Editing", "AI Videos", "Motion Graphics", "Instagram Reels", "YouTube Shorts"],
+    items: [
+      "Professional Video Editing", "AI Generated Videos", "Product Videos", "Promotional Videos",
+      "Motion Graphics", "Instagram Reels", "YouTube Shorts", "Business Ads", "Cinematic Editing",
+      "Thumbnail Design",
+    ],
   },
   {
     icon: Megaphone,
-    title: "Content & Social Media",
+    title: "Content Creation & Social Media Marketing",
     desc: "Strategy, posts, and copy that grow your audience.",
-    items: ["Social Media Promotion", "Post Design", "Content Writing", "Caption Writing", "Content Creation"],
+    items: [
+      "Social Media Management", "Instagram Marketing", "Facebook Marketing", "Content Writing",
+      "Caption Writing", "Post Design", "Creative Campaigns", "Branding Strategy",
+      "Monthly Content Planning", "Engagement Growth",
+    ],
   },
 ];
 
 function Services() {
+  const [openService, setOpenService] = useState<number | null>(null);
   return (
     <section id="services" className="relative py-24 md:py-32 bg-hero">
       <FloatingShapes />
@@ -338,22 +355,91 @@ function Services() {
                   </div>
                 </div>
                 <ul className="mt-6 grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
-                  {s.items.map((it) => (
+                  {s.items.slice(0, 6).map((it) => (
                     <li key={it} className="flex items-center gap-2 text-muted-foreground">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {it}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Learn more
+                <button
+                  onClick={() => setOpenService(i)}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
+                >
+                  Learn More
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </div>
+                </button>
               </div>
             </Reveal>
           ))}
         </div>
       </div>
+      <ServiceModal
+        service={openService !== null ? SERVICES[openService] : null}
+        onClose={() => setOpenService(null)}
+      />
     </section>
+  );
+}
+
+function ServiceModal({
+  service,
+  onClose,
+}: {
+  service: (typeof SERVICES)[number] | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!service) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [service, onClose]);
+  if (!service) return null;
+  const Icon = service.icon;
+  return (
+    <div className="fixed inset-0 z-[100] grid place-items-center p-4">
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="absolute inset-0 bg-background/70 backdrop-blur-md" onClick={onClose}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 240, damping: 24 }}
+        className="relative glass w-full max-w-2xl rounded-3xl p-8 md:p-10 shadow-[var(--shadow-glow)] max-h-[85vh] overflow-y-auto"
+      >
+        <button aria-label="Close" onClick={onClose}
+          className="absolute top-4 right-4 grid h-9 w-9 place-items-center rounded-full border border-border hover:bg-foreground/5 transition">
+          <X className="h-4 w-4" />
+        </button>
+        <div className="flex items-start gap-4">
+          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
+            <Icon className="h-6 w-6" />
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-2xl md:text-3xl font-bold">{service.title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{service.desc}</p>
+          </div>
+        </div>
+        <ul className="mt-8 grid sm:grid-cols-2 gap-3">
+          {service.items.map((it) => (
+            <li key={it} className="flex items-start gap-2 text-sm">
+              <Check className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+        <a
+          href={GOOGLE_FORM_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={onClose}
+          className="mt-8 btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold"
+        >
+          Book Your Project <ExternalLink className="h-4 w-4" />
+        </a>
+      </motion.div>
+    </div>
   );
 }
 
@@ -404,46 +490,52 @@ function Projects() {
             <h2 className="mt-3 text-4xl md:text-5xl font-bold">Featured <span className="gradient-text">Projects</span></h2>
           </Reveal>
         </div>
-        <div className="mt-14 grid lg:grid-cols-3 gap-6">
+        <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <Reveal>
-            <div className="lg:col-span-2 glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition">
-              <div className="relative bg-[image:var(--gradient-brand)]/10 p-8">
-                <img src={santhiImg} alt="Santhi Polyclinic website preview" loading="lazy" width={1200} height={900} className="w-full h-auto animate-float" />
+            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6">
+                <img src={santhiImg} alt="Santhi Polyclinic website preview" loading="lazy" width={1200} height={900} className="w-full h-auto animate-float rounded-xl" />
               </div>
-              <div className="p-8">
+              <div className="p-8 flex flex-col flex-1">
                 <div className="flex flex-wrap gap-2 mb-3">
                   <Tag>Healthcare</Tag>
                   <Tag>Web Design</Tag>
                   <Tag>Responsive</Tag>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold">Santhi Polyclinic Website</h3>
-                <p className="mt-3 text-muted-foreground max-w-2xl">
-                  A professional healthcare website designed for Santhi Polyclinic with a clean interface, responsive design, service pages, and patient-friendly experience.
+                <h3 className="text-2xl font-bold">Santhi Polyclinic Website</h3>
+                <p className="mt-3 text-muted-foreground flex-1">
+                  A professional healthcare website designed for Santhi Polyclinic with a clean UI, responsive design, patient-friendly experience, service pages, and appointment-focused layout.
                 </p>
                 <a href="https://santhi-polyclinic.netlify.app/" target="_blank" rel="noreferrer"
-                  className="mt-6 btn-glow inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
+                  className="mt-6 btn-glow inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold self-start">
                   Live Website <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
             </div>
           </Reveal>
-          <div className="grid gap-6">
-            {[1, 2].map((n, i) => (
-              <Reveal key={n} delay={0.1 * i}>
-                <div className="glass rounded-3xl p-8 h-full flex flex-col justify-between min-h-[240px] relative overflow-hidden">
-                  <div className="absolute inset-0 -z-10 opacity-40 bg-[image:var(--gradient-brand)] blur-3xl" />
-                  <div>
-                    <Tag>Coming Soon</Tag>
-                    <h3 className="mt-4 text-xl font-bold">Project Slot #{n}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">A new case study is on the way. Your brand could be featured here next.</p>
-                  </div>
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Reserve this slot <ArrowRight className="h-4 w-4" />
-                  </div>
+          <Reveal delay={0.1}>
+            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 flex justify-center">
+                <img src={fancyImg} alt="Fancy Corner Instagram marketing preview" loading="lazy" className="max-h-[420px] w-auto animate-float rounded-xl shadow-[var(--shadow-glow)]" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Tag>Social Media Marketing</Tag>
+                  <Tag>Graphic Design</Tag>
+                  <Tag>Content Creation</Tag>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+                <h3 className="text-2xl font-bold">Fancy Corner Instagram Marketing</h3>
+                <p className="mt-3 text-muted-foreground flex-1">
+                  Designed and managed Instagram promotional content for Fancy Corner — including product posters, reels, captions, branding, promotional campaigns, and engaging social media creatives to increase brand awareness and customer engagement.
+                </p>
+                <ul className="mt-4 grid sm:grid-cols-2 gap-y-1.5 gap-x-4 text-sm text-muted-foreground">
+                  {["Instagram Post Designs","Promotional Posters","Product Branding","Reels & Short Videos","Caption Writing","Social Media Strategy"].map((f) => (
+                    <li key={f} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />{f}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -555,9 +647,16 @@ function Team() {
 
 /* ---------- Testimonials ---------- */
 const TESTIMONIALS = [
-  { name: "Ravi Kumar", role: "Founder, Santhi Polyclinic", text: "Design Tint Studio built us a beautiful, patient-friendly website in record time. Communication was seamless and the result exceeded expectations." },
-  { name: "Priya Menon", role: "Marketing Lead, Startup", text: "Their branding work gave us a fresh identity that our customers instantly connected with. Truly premium creative team." },
-  { name: "Arjun R.", role: "Content Creator", text: "The AI video edits and reels boosted our engagement massively. Fast turnaround and stunning quality every single time." },
+  {
+    name: "Dr. V. Sathivel",
+    role: "Founder, Santhi Polyclinic",
+    text: "Design Tint Studio developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
+  },
+  {
+    name: "Kala",
+    role: "Owner, Fancy Corner",
+    text: "Working with Design Tint Studio has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
+  },
 ];
 function Testimonials() {
   const [i, setI] = useState(0);
@@ -578,6 +677,17 @@ function Testimonials() {
         <Reveal delay={0.2}>
           <div className="mt-12 glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
             <Quote className="absolute -top-4 -left-4 h-24 w-24 text-primary/10" />
+            <motion.div
+              key={`stars-${t.name}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="relative flex items-center justify-center gap-1 mb-4"
+            >
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <Star key={idx} className="h-5 w-5 fill-primary text-primary" />
+              ))}
+            </motion.div>
             <motion.p
               key={t.name}
               initial={{ opacity: 0, y: 12 }}
