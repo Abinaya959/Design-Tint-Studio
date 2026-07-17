@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
@@ -9,6 +10,14 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
+import logoAsset from "@/assets/design-tint-logo.png.asset.json";
+
+const LOGO_URL = logoAsset.url;
+const EMAILJS = {
+  serviceId: "service_cf8nyl9",
+  templateId: "template_3wj7wvo",
+  publicKey: "HgBatByBKmFahpQoJ",
+};
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
