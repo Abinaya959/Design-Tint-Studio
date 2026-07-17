@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
-  MessageCircle, MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
+  MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
   Menu, X, Check, Star,
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
