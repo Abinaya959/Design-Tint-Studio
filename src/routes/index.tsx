@@ -647,9 +647,16 @@ function Team() {
 
 /* ---------- Testimonials ---------- */
 const TESTIMONIALS = [
-  { name: "Ravi Kumar", role: "Founder, Santhi Polyclinic", text: "Design Tint Studio built us a beautiful, patient-friendly website in record time. Communication was seamless and the result exceeded expectations." },
-  { name: "Priya Menon", role: "Marketing Lead, Startup", text: "Their branding work gave us a fresh identity that our customers instantly connected with. Truly premium creative team." },
-  { name: "Arjun R.", role: "Content Creator", text: "The AI video edits and reels boosted our engagement massively. Fast turnaround and stunning quality every single time." },
+  {
+    name: "Dr. V. Sathivel",
+    role: "Founder, Santhi Polyclinic",
+    text: "Design Tint Studio developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
+  },
+  {
+    name: "Kala",
+    role: "Owner, Fancy Corner",
+    text: "Working with Design Tint Studio has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
+  },
 ];
 function Testimonials() {
   const [i, setI] = useState(0);
@@ -670,6 +677,17 @@ function Testimonials() {
         <Reveal delay={0.2}>
           <div className="mt-12 glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
             <Quote className="absolute -top-4 -left-4 h-24 w-24 text-primary/10" />
+            <motion.div
+              key={`stars-${t.name}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="relative flex items-center justify-center gap-1 mb-4"
+            >
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <Star key={idx} className="h-5 w-5 fill-primary text-primary" />
+              ))}
+            </motion.div>
             <motion.p
               key={t.name}
               initial={{ opacity: 0, y: 12 }}
