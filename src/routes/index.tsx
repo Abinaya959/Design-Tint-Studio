@@ -879,9 +879,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-[image:var(--gradient-brand)] text-white">
-              <Sparkles className="h-5 w-5" />
-            </span>
+            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 object-contain" />
             <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Studio</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">Design • Develop • Grow</p>
@@ -898,7 +896,7 @@ function Footer() {
         <div>
           <h4 className="font-bold">Follow</h4>
           <div className="mt-4 flex gap-2">
-            {[Instagram, Linkedin, Mail, MessageCircle].map((I, idx) => (
+            {[Instagram, Linkedin, Mail].map((I, idx) => (
               <a key={idx} href="#contact" className="grid h-10 w-10 place-items-center rounded-full glass hover:-translate-y-0.5 transition" aria-label="social">
                 <I className="h-4 w-4" />
               </a>
