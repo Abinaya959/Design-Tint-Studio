@@ -11,6 +11,8 @@ import {
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
 import fancyImg from "@/assets/project-fancy-corner.png";
+import santhiDesktop from "@/assets/santhi-desktop.png";
+import santhiMobile from "@/assets/santhi-mobile.png";
 import logoAsset from "@/assets/design-tint-logo.png.asset.json";
 
 const LOGO_URL = logoAsset.url;
@@ -196,7 +198,7 @@ function Hero() {
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
               {[
                 { k: "2+", v: "Years" },
-                { k: "50+", v: "Projects" },
+                { k: "10+", v: "Projects" },
                 { k: "100%", v: "Happy Clients" },
               ].map((s) => (
                 <div key={s.v}>
@@ -493,8 +495,24 @@ function Projects() {
         <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <Reveal>
             <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
-              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6">
-                <img src={santhiImg} alt="Santhi Polyclinic website preview" loading="lazy" width={1200} height={900} className="w-full h-auto animate-float rounded-xl" />
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-8 flex items-end justify-center gap-3 sm:gap-4">
+                {/* Laptop mockup */}
+                <div className="relative flex-1 max-w-[85%]">
+                  <div className="rounded-t-xl bg-neutral-900 dark:bg-neutral-800 p-1.5 sm:p-2 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
+                    <div className="rounded-md overflow-hidden bg-white aspect-[16/10]">
+                      <img src={santhiDesktop} alt="Santhi Polyclinic website — desktop homepage" loading="lazy" className="w-full h-full object-cover object-top" />
+                    </div>
+                  </div>
+                  <div className="h-2 bg-neutral-800 dark:bg-neutral-700 rounded-b-2xl mx-[-8%] shadow-md" />
+                </div>
+                {/* Phone mockup */}
+                <div className="relative w-[22%] min-w-[70px] -mb-1">
+                  <div className="rounded-[1rem] bg-neutral-900 dark:bg-neutral-800 p-1 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
+                    <div className="rounded-[0.75rem] overflow-hidden bg-white aspect-[9/19]">
+                      <img src={santhiMobile} alt="Santhi Polyclinic website — mobile view" loading="lazy" className="w-full h-full object-cover object-top" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="p-8 flex flex-col flex-1">
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -516,7 +534,13 @@ function Projects() {
           <Reveal delay={0.1}>
             <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
               <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 flex justify-center">
-                <img src={fancyImg} alt="Fancy Corner Instagram marketing preview" loading="lazy" className="max-h-[420px] w-auto animate-float rounded-xl shadow-[var(--shadow-glow)]" />
+                <div className="relative w-[62%] max-w-[240px]">
+                  <div className="rounded-[1.75rem] bg-neutral-900 dark:bg-neutral-800 p-1.5 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
+                    <div className="rounded-[1.35rem] overflow-hidden bg-black aspect-[9/19]">
+                      <img src={fancyImg} alt="Fancy Corner Instagram profile — social media marketing preview" loading="lazy" className="w-full h-full object-cover object-top" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="p-8 flex flex-col flex-1">
                 <div className="flex flex-wrap gap-2 mb-3">
