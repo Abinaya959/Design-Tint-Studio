@@ -492,24 +492,34 @@ function Projects() {
             <h2 className="mt-3 text-4xl md:text-5xl font-bold">Featured <span className="gradient-text">Projects</span></h2>
           </Reveal>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto [perspective:1200px]">
           <Reveal>
-            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
-              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-8 flex items-end justify-center gap-3 sm:gap-4">
-                {/* Laptop mockup */}
-                <div className="relative flex-1 max-w-[85%]">
-                  <div className="rounded-t-xl bg-neutral-900 dark:bg-neutral-800 p-1.5 sm:p-2 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
-                    <div className="rounded-md overflow-hidden bg-white aspect-[16/10]">
-                      <img src={santhiDesktop} alt="Santhi Polyclinic website — desktop homepage" loading="lazy" className="w-full h-full object-cover object-top" />
+            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-transform duration-500 will-change-transform hover:-translate-y-2 hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(-3deg)_translateY(-8px)]">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-10 flex items-end justify-center gap-3 sm:gap-4 overflow-hidden">
+                <div className="pointer-events-none absolute inset-x-8 bottom-3 h-6 rounded-[50%] bg-black/40 blur-2xl opacity-60" />
+                {/* Laptop mockup — premium */}
+                <div className="relative flex-1 max-w-[85%] animate-float">
+                  <div className="relative rounded-t-2xl bg-gradient-to-b from-neutral-700 via-neutral-900 to-black p-[6px] sm:p-[7px] shadow-[0_25px_50px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)_inset]">
+                    <div className="rounded-t-xl bg-black p-1 sm:p-1.5">
+                      <div className="relative rounded-md overflow-hidden bg-white aspect-[16/10] ring-1 ring-white/10">
+                        <img src={santhiDesktop} alt="Santhi Polyclinic website — desktop homepage" loading="lazy" className="w-full h-full object-cover object-top" />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
+                      </div>
                     </div>
+                    <div className="absolute top-[3px] left-1/2 -translate-x-1/2 h-[3px] w-10 rounded-full bg-neutral-700/80" />
                   </div>
-                  <div className="h-2 bg-neutral-800 dark:bg-neutral-700 rounded-b-2xl mx-[-8%] shadow-md" />
+                  {/* Base / hinge */}
+                  <div className="relative mx-[-9%]">
+                    <div className="h-[10px] bg-gradient-to-b from-neutral-300 via-neutral-400 to-neutral-600 dark:from-neutral-500 dark:via-neutral-700 dark:to-neutral-900 rounded-b-[14px] shadow-[0_10px_20px_-10px_rgba(0,0,0,0.6)]" />
+                    <div className="mx-auto h-[3px] w-1/4 bg-neutral-800/60 rounded-b-full" />
+                  </div>
                 </div>
                 {/* Phone mockup */}
-                <div className="relative w-[22%] min-w-[70px] -mb-1">
-                  <div className="rounded-[1rem] bg-neutral-900 dark:bg-neutral-800 p-1 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
-                    <div className="rounded-[0.75rem] overflow-hidden bg-white aspect-[9/19]">
-                      <img src={santhiMobile} alt="Santhi Polyclinic website — mobile view" loading="lazy" className="w-full h-full object-cover object-top" />
+                <div className="relative w-[24%] min-w-[74px] -mb-2 animate-float [animation-delay:1s]">
+                  <div className="rounded-[1.25rem] bg-gradient-to-b from-neutral-800 to-black p-[3px] border border-white/10 shadow-[0_18px_35px_-12px_rgba(0,0,0,0.7)]">
+                    <div className="relative rounded-[1rem] overflow-hidden bg-white aspect-[390/844]">
+                      <img src={santhiMobile} alt="Santhi Polyclinic website — mobile view" loading="lazy" className="absolute inset-0 w-full h-full object-cover object-top" />
+                      <div className="absolute top-1 left-1/2 -translate-x-1/2 h-[6px] w-[30%] rounded-full bg-black/90" />
                     </div>
                   </div>
                 </div>
@@ -532,12 +542,14 @@ function Projects() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="glass rounded-3xl overflow-hidden group hover:-translate-y-1 transition h-full flex flex-col">
-              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 flex justify-center">
-                <div className="relative w-[62%] max-w-[240px]">
-                  <div className="rounded-[1.75rem] bg-neutral-900 dark:bg-neutral-800 p-1.5 border border-neutral-700/60 shadow-[var(--shadow-glow)]">
-                    <div className="rounded-[1.35rem] overflow-hidden bg-black aspect-[9/19]">
+            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-transform duration-500 will-change-transform hover:-translate-y-2 hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(3deg)_translateY(-8px)]">
+              <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-8 flex justify-center overflow-hidden">
+                <div className="pointer-events-none absolute inset-x-12 bottom-3 h-6 rounded-[50%] bg-black/40 blur-2xl opacity-60" />
+                <div className="relative w-[62%] max-w-[240px] animate-float">
+                  <div className="rounded-[1.75rem] bg-gradient-to-b from-neutral-800 to-black p-[4px] border border-white/10 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]">
+                    <div className="relative rounded-[1.5rem] overflow-hidden bg-black aspect-[9/19]">
                       <img src={fancyImg} alt="Fancy Corner Instagram profile — social media marketing preview" loading="lazy" className="w-full h-full object-cover object-top" />
+                      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 h-[6px] w-[32%] rounded-full bg-black" />
                     </div>
                   </div>
                 </div>
