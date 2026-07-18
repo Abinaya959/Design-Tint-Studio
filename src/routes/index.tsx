@@ -494,15 +494,17 @@ function Projects() {
         </div>
         <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto [perspective:1200px]">
           <Reveal>
-            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-transform duration-500 will-change-transform hover:-translate-y-2 hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(-3deg)_translateY(-8px)]">
+            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-all duration-500 will-change-transform hover:-translate-y-2 hover:shadow-[0_30px_60px_-20px_hsl(var(--primary)/0.35)] hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(-3deg)_translateY(-8px)_scale(1.01)]">
               <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-10 flex items-end justify-center gap-3 sm:gap-4 overflow-hidden">
+                <div className="pointer-events-none absolute -inset-20 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.25),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="pointer-events-none absolute inset-x-8 bottom-3 h-6 rounded-[50%] bg-black/40 blur-2xl opacity-60" />
                 {/* Laptop mockup — premium */}
-                <div className="relative flex-1 max-w-[85%] animate-float">
+                <div className="relative flex-1 max-w-[85%] animate-float [transform:perspective(1400px)_rotateY(-6deg)_rotateX(3deg)] transition-transform duration-500 group-hover:[transform:perspective(1400px)_rotateY(-3deg)_rotateX(1deg)_scale(1.03)]">
                   <div className="relative rounded-t-2xl bg-gradient-to-b from-neutral-700 via-neutral-900 to-black p-[6px] sm:p-[7px] shadow-[0_25px_50px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)_inset]">
                     <div className="rounded-t-xl bg-black p-1 sm:p-1.5">
                       <div className="relative rounded-md overflow-hidden bg-white aspect-[16/10] ring-1 ring-white/10">
                         <img src={santhiDesktop} alt="Santhi Polyclinic website — desktop homepage" loading="lazy" className="w-full h-full object-cover object-top" />
+                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_45%,rgba(255,255,255,0.18)_50%,transparent_60%)]" />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
                       </div>
                     </div>
@@ -515,10 +517,11 @@ function Projects() {
                   </div>
                 </div>
                 {/* Phone mockup */}
-                <div className="relative w-[24%] min-w-[74px] -mb-2 animate-float [animation-delay:1s]">
+                <div className="relative w-[24%] min-w-[74px] -mb-2 animate-float [animation-delay:1s] [transform:perspective(1000px)_rotateY(8deg)] transition-transform duration-500 group-hover:[transform:perspective(1000px)_rotateY(3deg)_scale(1.05)]">
                   <div className="rounded-[1.25rem] bg-gradient-to-b from-neutral-800 to-black p-[3px] border border-white/10 shadow-[0_18px_35px_-12px_rgba(0,0,0,0.7)]">
                     <div className="relative rounded-[1rem] overflow-hidden bg-white aspect-[390/844]">
                       <img src={santhiMobile} alt="Santhi Polyclinic website — mobile view" loading="lazy" className="absolute inset-0 w-full h-full object-cover object-top" />
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent_50%,rgba(255,255,255,0.18)_55%,transparent_65%)]" />
                       <div className="absolute top-1 left-1/2 -translate-x-1/2 h-[6px] w-[30%] rounded-full bg-black/90" />
                     </div>
                   </div>
@@ -542,13 +545,15 @@ function Projects() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-transform duration-500 will-change-transform hover:-translate-y-2 hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(3deg)_translateY(-8px)]">
+            <div className="glass rounded-3xl overflow-hidden group h-full flex flex-col transition-all duration-500 will-change-transform hover:-translate-y-2 hover:shadow-[0_30px_60px_-20px_hsl(var(--primary)/0.35)] hover:[transform:perspective(1200px)_rotateX(2deg)_rotateY(3deg)_translateY(-8px)_scale(1.01)]">
               <div className="relative bg-[image:var(--gradient-brand)]/10 p-6 pb-8 flex justify-center overflow-hidden">
+                <div className="pointer-events-none absolute -inset-20 bg-[radial-gradient(circle_at_70%_20%,hsl(var(--primary)/0.25),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="pointer-events-none absolute inset-x-12 bottom-3 h-6 rounded-[50%] bg-black/40 blur-2xl opacity-60" />
-                <div className="relative w-[62%] max-w-[240px] animate-float">
+                <div className="relative w-[62%] max-w-[240px] animate-float [transform:perspective(1000px)_rotateY(-6deg)_rotateX(2deg)] transition-transform duration-500 group-hover:[transform:perspective(1000px)_rotateY(-2deg)_rotateX(0deg)_scale(1.04)]">
                   <div className="rounded-[1.75rem] bg-gradient-to-b from-neutral-800 to-black p-[4px] border border-white/10 shadow-[0_25px_50px_-15px_rgba(0,0,0,0.7)]">
                     <div className="relative rounded-[1.5rem] overflow-hidden bg-black aspect-[9/19]">
                       <img src={fancyImg} alt="Fancy Corner Instagram profile — social media marketing preview" loading="lazy" className="w-full h-full object-cover object-top" />
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_45%,rgba(255,255,255,0.12)_50%,transparent_60%)]" />
                       <div className="absolute top-1.5 left-1/2 -translate-x-1/2 h-[6px] w-[32%] rounded-full bg-black" />
                     </div>
                   </div>
