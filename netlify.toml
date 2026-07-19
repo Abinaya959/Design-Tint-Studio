@@ -1,11 +1,11 @@
 [build]
   command = "bun run build"
-  publish = ".output/public"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# The Nitro `netlify` preset (configured in vite.config.ts) emits the SSR
-# function to `.netlify/functions-internal/` and static assets into
-# `.output/public/` during `bun run build`. Netlify picks those up
-# automatically — no extra redirects needed here.
+# The Nitro `netlify` preset (configured in vite.config.ts) writes the SSR
+# function to `.netlify/functions-internal/server/server.mjs` and static
+# assets (plus `_redirects`) into `dist/`. Netlify auto-detects the
+# internal function — no [functions] block or redirects needed here.
