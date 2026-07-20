@@ -13,9 +13,7 @@ import santhiImg from "@/assets/project-santhi.png";
 import fancyImg from "@/assets/project-fancy-corner.png";
 import santhiDesktop from "@/assets/santhi-desktop.png";
 import santhiMobile from "@/assets/santhi-mobile.png";
-import logoAsset from "@/assets/design-tint-logo.png.asset.json";
-
-const LOGO_URL = logoAsset.url;
+const LOGO_URL = "/logo.png";
 const EMAILJS = {
   serviceId: "service_cf8nyl9",
   templateId: "template_3wj7wvo",
@@ -119,7 +117,7 @@ function Navbar({ theme, toggle }: { theme: "light" | "dark"; toggle: () => void
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
         <div className={`glass flex items-center justify-between px-4 sm:px-6 py-3 ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#home" className="flex items-center gap-2 min-w-0">
-            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 shrink-0 object-contain" />
+            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 shrink-0 object-contain" />
             <span className="font-display text-lg font-bold tracking-tight truncate">
               Design<span className="gradient-text">Tint</span> Studio
             </span>
@@ -1030,7 +1028,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2">
-            <img src={LOGO_URL} alt="Design Tint Studio" className="h-10 w-10 object-contain" />
+            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 object-contain" />
             <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Studio</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">Design • Develop • Grow</p>
