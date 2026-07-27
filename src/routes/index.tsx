@@ -429,7 +429,7 @@ function ServiceModal({
   service,
   onClose,
 }: {
-  service: (typeof SERVICES)[number] | null;
+  service: Service | null;
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -465,6 +465,9 @@ function ServiceModal({
             <p className="mt-1 text-sm text-muted-foreground">{service.desc}</p>
           </div>
         </div>
+        {service.longDesc && (
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{service.longDesc}</p>
+        )}
         <ul className="mt-8 grid sm:grid-cols-2 gap-3">
           {service.items.map((it) => (
             <li key={it} className="flex items-start gap-2 text-sm">
@@ -473,6 +476,32 @@ function ServiceModal({
             </li>
           ))}
         </ul>
+        {service.groups && (
+          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            {service.groups.map((g) => (
+              <div key={g.title} className="glass rounded-2xl p-5">
+                <h4 className="text-sm font-bold">{g.emoji} {g.title}</h4>
+                <ul className="mt-3 space-y-1.5">
+                  {g.list.map((l) => (
+                    <li key={l} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" /> {l}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        {service.perfectFor && (
+          <div className="mt-8">
+            <h4 className="text-sm font-bold">Perfect For</h4>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {service.perfectFor.map((p) => (
+                <span key={p} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{p}</span>
+              ))}
+            </div>
+          </div>
+        )}
         <a
           href={GOOGLE_FORM_URL}
           target="_blank"
@@ -480,7 +509,7 @@ function ServiceModal({
           onClick={onClose}
           className="mt-8 btn-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold"
         >
-          Book Your Project <ExternalLink className="h-4 w-4" />
+          {service.ctaLabel ?? "Book Your Project"} <ExternalLink className="h-4 w-4" />
         </a>
       </motion.div>
     </div>
