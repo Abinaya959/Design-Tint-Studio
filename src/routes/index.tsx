@@ -323,7 +323,46 @@ const SERVICES = [
       "Monthly Content Planning", "Engagement Growth",
     ],
   },
+  {
+    icon: Bot,
+    title: "AI Solutions & Business Automation",
+    desc: "Empower businesses with intelligent AI-powered solutions that automate repetitive tasks, improve customer engagement, increase productivity, and simplify digital operations.",
+    wide: true,
+    longDesc:
+      "Build a personalized AI assistant designed specifically for your business. Our AI solutions help automate daily operations, improve customer interactions, generate creative content, and save valuable time.",
+    ctaLabel: "Book Your AI Solution",
+    items: [
+      "Personalized AI Agents", "AI WhatsApp Assistant", "AI Customer Support",
+      "AI Instagram Content Planner", "AI Caption Generator", "AI Post Generator",
+      "AI Offer Recommendation System", "AI Festival Campaign Generator", "AI Marketing Assistant",
+      "AI Email Reply Generator", "AI Business Chatbot", "AI Website Assistant",
+      "AI Content Writer", "AI Image & Poster Ideas", "AI Video Script Generator",
+      "AI Workflow Automation",
+    ],
+    groups: [
+      { emoji: "🤖", title: "AI Agents", list: ["Custom AI Business Assistant", "AI Customer Support Assistant", "AI Website Chatbot", "AI WhatsApp Assistant", "AI Knowledge Base Assistant", "AI FAQ Assistant"] },
+      { emoji: "📱", title: "AI Social Media Assistant", list: ["Personalized Instagram Content Suggestions", "AI Post Creator", "AI Carousel Content Generator", "AI Reel Script Generator", "AI Caption Generator", "AI Hashtag Generator", "AI Content Calendar", "Trending Content Suggestions"] },
+      { emoji: "💬", title: "AI Communication Assistant", list: ["AI WhatsApp Reply Generator", "Customer Support Reply Generator", "Professional Email Reply Generator", "Follow-up Message Generator", "Auto Response Templates", "Business Conversation Assistant"] },
+      { emoji: "🎯", title: "AI Marketing Assistant", list: ["Personalized Offer Suggestions", "Festival Offer Generator", "Discount Campaign Ideas", "Product Promotion Ideas", "Social Media Marketing Strategy", "Customer Engagement Ideas"] },
+      { emoji: "✍️", title: "AI Content Creation", list: ["Product Descriptions", "Blog Writing", "Content Writing", "Advertisement Copy", "Website Content", "Social Media Content", "Promotional Content"] },
+      { emoji: "🎨", title: "AI Creative Studio", list: ["AI Image Generation", "AI Poster Ideas", "AI Banner Concepts", "AI Video Script Writing", "AI Video Planning", "Creative Campaign Ideas"] },
+      { emoji: "📊", title: "Business Productivity", list: ["Business Workflow Automation", "Document Summarization", "Data Insights", "Business Report Generation", "Task Automation", "AI Productivity Assistant"] },
+    ],
+    perfectFor: ["Retail Stores", "Mobile Shops", "Fashion Stores", "Clinics", "Restaurants", "Salons", "Educational Institutions", "Startups", "Small Businesses", "Personal Brands", "Local Businesses"],
+  },
 ];
+
+type Service = {
+  icon: typeof Code2;
+  title: string;
+  desc: string;
+  items: string[];
+  wide?: boolean;
+  longDesc?: string;
+  ctaLabel?: string;
+  groups?: { emoji: string; title: string; list: string[] }[];
+  perfectFor?: string[];
+};
 
 function Services() {
   const [openService, setOpenService] = useState<number | null>(null);
@@ -337,25 +376,29 @@ function Services() {
             <h2 className="mt-3 text-4xl md:text-5xl font-bold">Our <span className="gradient-text">Services</span></h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-4 text-muted-foreground">Four pillars, one goal — help your brand look and perform like the best.</p>
+            <p className="mt-4 text-muted-foreground">Five pillars, one goal — help your brand look and perform like the best.</p>
           </Reveal>
         </div>
         <div className="mt-14 grid md:grid-cols-2 gap-6">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08}>
+          {(SERVICES as Service[]).map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.08} className={s.wide ? "md:col-span-2" : undefined}>
               <div className="group relative glass p-8 rounded-3xl overflow-hidden hover:-translate-y-1 transition duration-500">
                 <div className="absolute -top-24 -right-24 h-56 w-56 rounded-full bg-[image:var(--gradient-brand)] opacity-0 group-hover:opacity-30 blur-3xl transition duration-700" />
                 <div className="flex items-start gap-4">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]">
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                    className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] text-white shadow-[var(--shadow-glow)]"
+                  >
                     <s.icon className="h-6 w-6" />
-                  </div>
+                  </motion.div>
                   <div className="min-w-0">
                     <h3 className="text-xl md:text-2xl font-bold">{s.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
                   </div>
                 </div>
-                <ul className="mt-6 grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
-                  {s.items.slice(0, 6).map((it) => (
+                <ul className={`mt-6 grid sm:grid-cols-2 ${s.wide ? "lg:grid-cols-3" : ""} gap-y-2 gap-x-4 text-sm`}>
+                  {s.items.slice(0, s.wide ? 9 : 6).map((it) => (
                     <li key={it} className="flex items-center gap-2 text-muted-foreground">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {it}
                     </li>
