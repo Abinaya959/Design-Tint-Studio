@@ -6,7 +6,7 @@ import {
   Code2, Palette, Clapperboard, Megaphone, ArrowRight, Sparkles, Rocket,
   BadgeCheck, Zap, Timer, Sun, Moon, ArrowUp, Mail, Instagram, Linkedin,
   MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
-  Menu, X, Check, Star,
+  Menu, X, Check, Star, Bot,
 } from "lucide-react";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
