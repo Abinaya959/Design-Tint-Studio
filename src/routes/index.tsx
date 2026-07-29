@@ -980,6 +980,10 @@ const PRICING = [
     features: ["AI Videos", "Reels", "Shorts", "Motion Graphics", "Video Editing"] },
   { emoji: "📱", icon: Megaphone, title: "Content & Social Media", price: "₹1,000 – ₹3,500",
     features: ["Social Media Promotion", "Content Writing", "Caption Writing", "Post Design", "Content Creation"] },
+  { emoji: "🤖", icon: Brain, title: "AI Services", price: "₹2,000 – ₹10,000", subtitle: "Custom pricing based on your business requirements.",
+    shortDescription: "Smart AI-powered solutions to automate your business, improve customer engagement, and save time.",
+    services: ["Custom AI Agent", "AI Business Assistant", "AI Website Chatbot", "AI WhatsApp Assistant", "AI Customer Support", "AI Instagram Content Planner", "AI Post & Caption Generator", "AI Offer Suggestion System", "AI Email & WhatsApp Reply Generator", "AI Content Creation", "AI Workflow Automation"],
+    features: ["Personalized AI Solutions", "Fast Setup", "Business Automation", "Easy Integration", "Scalable for Any Business"] },
 ];
 
 function Pricing() {
