@@ -1001,7 +1001,7 @@ function Pricing() {
             <p className="mt-4 text-muted-foreground">Premium quality, honest starting prices. Pick the plan that fits your goals.</p>
           </Reveal>
         </div>
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {PRICING.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <motion.div
@@ -1024,18 +1024,34 @@ function Pricing() {
                     <span className="text-2xl" aria-hidden>{p.emoji}</span>
                   </div>
                   <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
+                  {p.shortDescription && (
+                    <p className="mt-2 text-sm text-muted-foreground">{p.shortDescription}</p>
+                  )}
                   <div className="mt-4">
                     <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground">Starting Price</div>
                     <div className="mt-1 text-2xl font-display font-extrabold gradient-text">{p.price}</div>
+                    {p.subtitle && <div className="mt-2 text-xs text-muted-foreground">{p.subtitle}</div>}
                   </div>
-                  <ul className="mt-5 grid gap-2 text-sm text-muted-foreground flex-1">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2">
-                        <Check className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mt-5 flex-1 flex flex-col gap-4">
+                    {p.services && (
+                      <ul className="grid gap-2 text-sm text-muted-foreground">
+                        {p.services.map((s) => (
+                          <li key={s} className="flex items-start gap-2">
+                            <span className="h-4 w-4 mt-0.5 text-primary shrink-0 text-xs leading-4">•</span>
+                            <span>{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <ul className="grid gap-2 text-sm text-muted-foreground">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <button
                     onClick={() => setOpenPlan(p.title)}
                     className="mt-6 btn-glow inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
