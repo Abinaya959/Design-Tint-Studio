@@ -8,6 +8,7 @@ import {
   MapPin, ExternalLink, Quote, ChevronLeft, ChevronRight,
   Menu, X, Check, Star, Bot, Brain,
 } from "lucide-react";
+import { VideoShowcase } from "@/components/VideoShowcase";
 import heroImg from "@/assets/hero-illustration.png";
 import santhiImg from "@/assets/project-santhi.png";
 import fancyImg from "@/assets/project-fancy-corner.png";
@@ -99,6 +100,7 @@ const NAV = [
   { label: "Services", href: "#services" },
   { label: "Pricing", href: "#pricing" },
   { label: "Projects", href: "#projects" },
+  { label: "Videos", href: "#videos" },
   { label: "Process", href: "#process" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
@@ -1192,6 +1194,7 @@ function LandingPage() {
         <WhyUs />
         <Pricing />
         <Projects />
+        <VideoShowcase />
         <Process />
         <Team />
         <Testimonials />
