@@ -254,28 +254,18 @@ export function VideoShowcase() {
 
         <Reveal delay={0.1}>
           <div className="mt-16 glass rounded-3xl p-8 md:p-10 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold">More Creative Stories Coming Soon.</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">More Videos Coming Soon.</h3>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
-              We're constantly experimenting with AI, design, video and storytelling to turn new ideas into memorable visuals.
+              Explore more creative AI videos, cinematic concepts, festival specials and visual stories from Design Tint Studio.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              {hasYouTube && (
-                <a
-                  href={YOUTUBE_CHANNEL_URL}
-                  target="_blank" rel="noreferrer"
-                  aria-label="Explore Design Tint Studio on YouTube"
-                  className="inline-flex items-center gap-2 rounded-full btn-glow px-6 py-3 text-sm font-semibold"
-                >
-                  <Youtube className="h-4 w-4" /> Explore YouTube
-                </a>
-              )}
               <a
-                href={INSTAGRAM_URL}
-                target="_blank" rel="noreferrer"
-                aria-label="Follow Design Tint Studio on Instagram"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:bg-foreground/5 transition"
+                href={YOUTUBE_CHANNEL}
+                target="_blank" rel="noopener noreferrer"
+                aria-label="More videos on the Design Tint Studio YouTube channel"
+                className="inline-flex items-center gap-2 rounded-full btn-glow px-6 py-3 text-sm font-semibold"
               >
-                <Instagram className="h-4 w-4" /> Follow Instagram
+                <Youtube className="h-4 w-4" /> More Videos
               </a>
             </div>
           </div>
