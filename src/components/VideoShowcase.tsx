@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Play, X, Youtube, Instagram, ImageIcon } from "lucide-react";
+import { Play, X, Youtube, ImageIcon } from "lucide-react";
 
 /* ---------- Social links ----------
    Instagram is taken from the existing site links.
    TODO: replace the placeholder below with the real Design Tint Studio channel URL. */
 export const INSTAGRAM_URL = "https://instagram.com/design_tint_studio";
-export const YOUTUBE_CHANNEL_URL = "YOUR_YOUTUBE_CHANNEL_URL"; // placeholder
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/channel/UCA32SqrQkk7I4TGNxz-nxXg";
 
 export type VideoProject = {
   title: string;
@@ -224,7 +224,6 @@ export function VideoModal({ video, onClose }: { video: VideoProject | null; onC
 /* ---------- VideoShowcase ---------- */
 export function VideoShowcase() {
   const [active, setActive] = useState<VideoProject | null>(null);
-  const hasYouTube = YOUTUBE_CHANNEL_URL.startsWith("http");
 
   return (
     <section id="videos" className="relative py-24 md:py-32 bg-hero">
