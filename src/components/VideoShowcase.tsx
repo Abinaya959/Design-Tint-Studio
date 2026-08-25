@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Play, X, Youtube, Instagram, ImageIcon } from "lucide-react";
+import { Play, X, Youtube, ImageIcon } from "lucide-react";
 
 /* ---------- Social links ----------
    Instagram is taken from the existing site links.
    TODO: replace the placeholder below with the real Design Tint Studio channel URL. */
 export const INSTAGRAM_URL = "https://instagram.com/design_tint_studio";
-export const YOUTUBE_CHANNEL_URL = "YOUR_YOUTUBE_CHANNEL_URL"; // placeholder
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/channel/UCA32SqrQkk7I4TGNxz-nxXg";
 
 export type VideoProject = {
   title: string;
@@ -14,6 +14,7 @@ export type VideoProject = {
   description: string;
   thumbnail: string;
   youtubeUrl: string;
+  youtubeId: string;
 };
 
 /* Add a new video by appending one object here. */
@@ -21,32 +22,49 @@ export const videoProjects: VideoProject[] = [
   {
     title: "Independence Day 2026 🇮🇳",
     category: "Festival AI Film",
-    description: "A cinematic AI-powered Independence Day special celebrating India's spirit and freedom.",
-    thumbnail: "/images/videos/independence-day-2026.jpg",
-    youtubeUrl: "https://youtube.com/shorts/RaXQEAcz4fw?si=3_gVBuswnF339_Ot",
+    description:
+      "A cinematic AI-powered Independence Day special created to celebrate India's spirit, freedom and pride.",
+    youtubeId: "RaXQEAcz4fw",
+    youtubeUrl: "https://youtube.com/shorts/RaXQEAcz4fw?si=6jiOBAJqtfIUDLyh",
+    thumbnail: "https://i.ytimg.com/vi/RaXQEAcz4fw/hqdefault.jpg",
   },
   {
-    title: "Raja Raja Cholan × AI 👑",
-    category: "AI History Concept",
-    description: "A creative imagination of Raja Raja Cholan entering the modern AI era.",
-    thumbnail: "/images/videos/raja-raja-cholan-ai.jpg",
-    youtubeUrl: "https://www.youtube.com/",
-  },
-  {
-    title: "Burj Khalifa Café ☕",
+    title: "What If Burj Khalifa Became a Café? ☕",
     category: "AI What-If Concept",
-    description: "What if the Burj Khalifa became a futuristic café?",
-    thumbnail: "/images/videos/burj-khalifa-cafe.jpg",
-    youtubeUrl: "https://youtube.com/shorts/1rdJWLxNFoA?si=eCnxXArm5UxXbx0C",
+    description: "An imaginative AI concept transforming the iconic Burj Khalifa into a futuristic café.",
+    youtubeId: "1rdJWLxNFoA",
+    youtubeUrl: "https://youtube.com/shorts/1rdJWLxNFoA?si=ETTUOU4Jlf-9petQ",
+    thumbnail: "https://i.ytimg.com/vi/1rdJWLxNFoA/hqdefault.jpg",
   },
   {
-    title: "Monsoon Love Story 🌧️❤️",
-    category: "AI Cinematic Story",
-    description: "A romantic cinematic AI visual inspired by the beauty of monsoon.",
-    thumbnail: "/images/videos/monsoon-love.jpg",
-    youtubeUrl: "https://www.youtube.com/",
+    title: "Raja Raja Cholan Meets AI 👑",
+    category: "AI History Concept",
+    description:
+      "What if the legendary Raja Raja Cholan entered the modern AI era? A creative blend of Tamil history and futuristic imagination.",
+    youtubeId: "OlWP_a66RW0",
+    youtubeUrl: "https://youtube.com/shorts/OlWP_a66RW0?feature=shared",
+    thumbnail: "https://i.ytimg.com/vi/OlWP_a66RW0/hqdefault.jpg",
+  },
+  {
+    title: "Kindness ❤️",
+    category: "AI Short Story",
+    description:
+      "A short emotional AI-created story about kindness, humanity and the impact of a small good deed.",
+    youtubeId: "elfY5ce7Ors",
+    youtubeUrl: "https://youtu.be/elfY5ce7Ors?si=6HXvec9sTJu1oehc",
+    thumbnail: "https://i.ytimg.com/vi/elfY5ce7Ors/hqdefault.jpg",
+  },
+  {
+    title: "Moon & Star 🌙⭐",
+    category: "AI Story",
+    description: "A magical AI visual story inspired by the moon, stars, imagination and wonder.",
+    youtubeId: "QKCBzI-X4iY",
+    youtubeUrl: "https://youtube.com/shorts/QKCBzI-X4iY?si=aflewqKp233UeZr1",
+    thumbnail: "https://i.ytimg.com/vi/QKCBzI-X4iY/hqdefault.jpg",
   },
 ];
+
+export const YOUTUBE_CHANNEL = "https://www.youtube.com/channel/UCA32SqrQkk7I4TGNxz-nxXg";
 
 /* ---------- YouTube URL -> embed URL ---------- */
 export function toYouTubeEmbedUrl(url: string): string | null {
@@ -157,7 +175,9 @@ export function VideoModal({ video, onClose }: { video: VideoProject | null; onC
   }, [video, onClose]);
 
   if (!video) return null;
-  const embed = toYouTubeEmbedUrl(video.youtubeUrl);
+  const embed = video.youtubeId
+    ? `https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`
+    : toYouTubeEmbedUrl(video.youtubeUrl);
 
   return (
     <div className="fixed inset-0 z-[100] grid place-items-center p-4" role="dialog" aria-modal="true" aria-label={video.title}>
@@ -204,7 +224,6 @@ export function VideoModal({ video, onClose }: { video: VideoProject | null; onC
 /* ---------- VideoShowcase ---------- */
 export function VideoShowcase() {
   const [active, setActive] = useState<VideoProject | null>(null);
-  const hasYouTube = YOUTUBE_CHANNEL_URL.startsWith("http");
 
   return (
     <section id="videos" className="relative py-24 md:py-32 bg-hero">
@@ -219,7 +238,7 @@ export function VideoShowcase() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-4 text-muted-foreground">
-              Explore our AI-powered videos, festival specials, cinematic concepts and creative visual experiments crafted by Design Tint Studio.
+              Explore our AI-powered videos, creative concepts, festival specials and visual stories created by Design Tint Studio.
             </p>
           </Reveal>
         </div>
@@ -234,28 +253,18 @@ export function VideoShowcase() {
 
         <Reveal delay={0.1}>
           <div className="mt-16 glass rounded-3xl p-8 md:p-10 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold">More Creative Stories Coming Soon.</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">More Videos Coming Soon.</h3>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
-              We're constantly experimenting with AI, design, video and storytelling to turn new ideas into memorable visuals.
+              Explore more creative AI videos, cinematic concepts, festival specials and visual stories from Design Tint Studio.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              {hasYouTube && (
-                <a
-                  href={YOUTUBE_CHANNEL_URL}
-                  target="_blank" rel="noreferrer"
-                  aria-label="Explore Design Tint Studio on YouTube"
-                  className="inline-flex items-center gap-2 rounded-full btn-glow px-6 py-3 text-sm font-semibold"
-                >
-                  <Youtube className="h-4 w-4" /> Explore YouTube
-                </a>
-              )}
               <a
-                href={INSTAGRAM_URL}
-                target="_blank" rel="noreferrer"
-                aria-label="Follow Design Tint Studio on Instagram"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:bg-foreground/5 transition"
+                href={YOUTUBE_CHANNEL}
+                target="_blank" rel="noopener noreferrer"
+                aria-label="More videos on the Design Tint Studio YouTube channel"
+                className="inline-flex items-center gap-2 rounded-full btn-glow px-6 py-3 text-sm font-semibold"
               >
-                <Instagram className="h-4 w-4" /> Follow Instagram
+                <Youtube className="h-4 w-4" /> More Videos
               </a>
             </div>
           </div>
