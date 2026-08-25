@@ -239,7 +239,7 @@ export function VideoShowcase() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-4 text-muted-foreground">
-              Explore our AI-powered videos, festival specials, cinematic concepts and creative visual experiments crafted by Design Tint Studio.
+              Explore our AI-powered videos, creative concepts, festival specials and visual stories created by Design Tint Studio.
             </p>
           </Reveal>
         </div>
