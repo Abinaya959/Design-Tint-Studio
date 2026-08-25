@@ -14,6 +14,7 @@ export type VideoProject = {
   description: string;
   thumbnail: string;
   youtubeUrl: string;
+  youtubeId: string;
 };
 
 /* Add a new video by appending one object here. */
@@ -21,32 +22,49 @@ export const videoProjects: VideoProject[] = [
   {
     title: "Independence Day 2026 🇮🇳",
     category: "Festival AI Film",
-    description: "A cinematic AI-powered Independence Day special celebrating India's spirit and freedom.",
-    thumbnail: "/images/videos/independence-day-2026.jpg",
-    youtubeUrl: "https://youtube.com/shorts/RaXQEAcz4fw?si=3_gVBuswnF339_Ot",
+    description:
+      "A cinematic AI-powered Independence Day special created to celebrate India's spirit, freedom and pride.",
+    youtubeId: "RaXQEAcz4fw",
+    youtubeUrl: "https://youtube.com/shorts/RaXQEAcz4fw?si=6jiOBAJqtfIUDLyh",
+    thumbnail: "https://i.ytimg.com/vi/RaXQEAcz4fw/hqdefault.jpg",
   },
   {
-    title: "Raja Raja Cholan × AI 👑",
-    category: "AI History Concept",
-    description: "A creative imagination of Raja Raja Cholan entering the modern AI era.",
-    thumbnail: "/images/videos/raja-raja-cholan-ai.jpg",
-    youtubeUrl: "https://www.youtube.com/",
-  },
-  {
-    title: "Burj Khalifa Café ☕",
+    title: "What If Burj Khalifa Became a Café? ☕",
     category: "AI What-If Concept",
-    description: "What if the Burj Khalifa became a futuristic café?",
-    thumbnail: "/images/videos/burj-khalifa-cafe.jpg",
-    youtubeUrl: "https://youtube.com/shorts/1rdJWLxNFoA?si=eCnxXArm5UxXbx0C",
+    description: "An imaginative AI concept transforming the iconic Burj Khalifa into a futuristic café.",
+    youtubeId: "1rdJWLxNFoA",
+    youtubeUrl: "https://youtube.com/shorts/1rdJWLxNFoA?si=ETTUOU4Jlf-9petQ",
+    thumbnail: "https://i.ytimg.com/vi/1rdJWLxNFoA/hqdefault.jpg",
   },
   {
-    title: "Monsoon Love Story 🌧️❤️",
-    category: "AI Cinematic Story",
-    description: "A romantic cinematic AI visual inspired by the beauty of monsoon.",
-    thumbnail: "/images/videos/monsoon-love.jpg",
-    youtubeUrl: "https://www.youtube.com/",
+    title: "Raja Raja Cholan Meets AI 👑",
+    category: "AI History Concept",
+    description:
+      "What if the legendary Raja Raja Cholan entered the modern AI era? A creative blend of Tamil history and futuristic imagination.",
+    youtubeId: "OlWP_a66RW0",
+    youtubeUrl: "https://youtube.com/shorts/OlWP_a66RW0?feature=shared",
+    thumbnail: "https://i.ytimg.com/vi/OlWP_a66RW0/hqdefault.jpg",
+  },
+  {
+    title: "Kindness ❤️",
+    category: "AI Short Story",
+    description:
+      "A short emotional AI-created story about kindness, humanity and the impact of a small good deed.",
+    youtubeId: "elfY5ce7Ors",
+    youtubeUrl: "https://youtu.be/elfY5ce7Ors?si=6HXvec9sTJu1oehc",
+    thumbnail: "https://i.ytimg.com/vi/elfY5ce7Ors/hqdefault.jpg",
+  },
+  {
+    title: "Moon & Star 🌙⭐",
+    category: "AI Story",
+    description: "A magical AI visual story inspired by the moon, stars, imagination and wonder.",
+    youtubeId: "QKCBzI-X4iY",
+    youtubeUrl: "https://youtube.com/shorts/QKCBzI-X4iY?si=aflewqKp233UeZr1",
+    thumbnail: "https://i.ytimg.com/vi/QKCBzI-X4iY/hqdefault.jpg",
   },
 ];
+
+export const YOUTUBE_CHANNEL = "https://www.youtube.com/channel/UCA32SqrQkk7I4TGNxz-nxXg";
 
 /* ---------- YouTube URL -> embed URL ---------- */
 export function toYouTubeEmbedUrl(url: string): string | null {
