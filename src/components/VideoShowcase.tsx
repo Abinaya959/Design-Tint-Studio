@@ -175,7 +175,9 @@ export function VideoModal({ video, onClose }: { video: VideoProject | null; onC
   }, [video, onClose]);
 
   if (!video) return null;
-  const embed = toYouTubeEmbedUrl(video.youtubeUrl);
+  const embed = video.youtubeId
+    ? `https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`
+    : toYouTubeEmbedUrl(video.youtubeUrl);
 
   return (
     <div className="fixed inset-0 z-[100] grid place-items-center p-4" role="dialog" aria-modal="true" aria-label={video.title}>
