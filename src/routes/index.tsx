@@ -120,7 +120,7 @@ function Navbar({ theme, toggle }: { theme: "light" | "dark"; toggle: () => void
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
         <div className={`glass flex items-center justify-between px-4 sm:px-6 py-3 ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#home" className="flex items-center gap-2 min-w-0">
-            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 shrink-0 object-contain" />
+            <img src={LOGO_URL} alt="Design Tint Technologies Logo" className="h-10 w-10 shrink-0 object-contain" />
             <span className="font-display text-lg font-bold tracking-tight truncate">
               Design<span className="gradient-text">Tint</span> Studio
             </span>
@@ -214,7 +214,7 @@ function Hero() {
           <div className="relative">
             <div className="absolute inset-0 -z-10 rounded-[3rem] bg-[image:var(--gradient-brand)] opacity-20 blur-3xl" />
             <div className="glass p-4 sm:p-6 rounded-[2rem]">
-              <img src={heroImg} alt="Design Tint Studio creative work — laptop, phone and branding" className="w-full h-auto animate-float" width={1200} height={1024} />
+              <img src={heroImg} alt="Design Tint Technologies creative work — laptop, phone and branding" className="w-full h-auto animate-float" width={1200} height={1024} />
             </div>
             <div className="absolute -bottom-6 -left-6 glass px-4 py-3 rounded-2xl flex items-center gap-2 shadow-[var(--shadow-soft)]">
               <Zap className="h-4 w-4 text-primary" />
@@ -249,7 +249,7 @@ function About() {
               Where <span className="gradient-text">creativity</span> meets technology.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Design Tint Studio is a creative digital agency focused on helping startups, entrepreneurs, and businesses grow online. We combine creativity with technology to build websites, strong brand identities, engaging content, and powerful digital experiences.
+              Design Tint Technologies is a creative digital agency focused on helping startups, entrepreneurs, and businesses grow online. We combine creativity with technology to build websites, strong brand identities, engaging content, and powerful digital experiences.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               From modern websites to AI-generated videos and complete branding solutions, we provide everything needed to build a memorable digital presence.
@@ -764,12 +764,12 @@ const TESTIMONIALS = [
   {
     name: "Dr. V. Sathivel",
     role: "Founder, Santhi Polyclinic",
-    text: "Design Tint Studio developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
+    text: "Design Tint Technologies developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
   },
   {
     name: "Kala",
     role: "Owner, Fancy Corner",
-    text: "Working with Design Tint Studio has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
+    text: "Working with Design Tint Technologies has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
   },
 ];
 function Testimonials() {
@@ -893,7 +893,7 @@ function Contact() {
             <div className="mt-8 grid gap-3">
               {[
                 { icon: Mail, label: "contact.designtintstudio@gmail.com", href: "mailto:contact.designtintstudio@gmail.com" },
-                { icon: Instagram, label: "@design_tint_studio", href: "https://instagram.com/design_tint_studio" },
+                { icon: Instagram, label: "@design_tint_technologies", href: "https://www.instagram.com/design_tint_technologies/" },
                 { icon: MapPin, label: "Tamil Nadu, India" },
               ].map((c) => (
                 <a
@@ -1123,7 +1123,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2">
-            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 object-contain" />
+            <img src={LOGO_URL} alt="Design Tint Technologies Logo" className="h-10 w-10 object-contain" />
             <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Studio</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">Design • Develop • Grow</p>
@@ -1149,7 +1149,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © 2026 Design Tint Studio. All Rights Reserved.
+        © 2026 Design Tint Technologies. All Rights Reserved.
       </div>
     </footer>
   );
