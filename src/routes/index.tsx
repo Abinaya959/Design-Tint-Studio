@@ -1024,9 +1024,6 @@ function Pricing() {
                     <span className="text-2xl" aria-hidden>{p.emoji}</span>
                   </div>
                   <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
-                  {p.shortDescription && (
-                    <p className="mt-2 text-sm text-muted-foreground">{p.shortDescription}</p>
-                  )}
                   <div className="mt-4">
                     <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground">Starting Price</div>
                     <div className="mt-1 text-2xl font-display font-extrabold gradient-text">{p.price}</div>
