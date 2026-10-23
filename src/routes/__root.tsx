@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -34,7 +35,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -77,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Design Tint Studio — Design. Build. Grow." },
-      { name: "description", content: "Design Tint Studio is a creative digital agency crafting websites, branding, AI video, and social content for modern businesses." },
-      { name: "author", content: "Design Tint Studio" },
-      { property: "og:title", content: "Design Tint Studio — Design. Build. Grow." },
+      { title: "Design Tint Technologies — Design. Build. Grow." },
+      { name: "description", content: "Design Tint Technologies is a creative digital agency crafting websites, branding, AI video, and social content for modern businesses." },
+      { name: "author", content: "Design Tint Technologies" },
+      { property: "og:title", content: "Design Tint Technologies — Design. Build. Grow." },
       { property: "og:description", content: "Creative digital solutions for modern businesses — websites, branding, AI video, and social." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

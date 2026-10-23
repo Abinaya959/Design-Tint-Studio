@@ -4,8 +4,8 @@ import { Play, X, Youtube, ImageIcon } from "lucide-react";
 
 /* ---------- Social links ----------
    Instagram is taken from the existing site links.
-   TODO: replace the placeholder below with the real Design Tint Studio channel URL. */
-export const INSTAGRAM_URL = "https://instagram.com/design_tint_studio";
+   TODO: replace the placeholder below with the real Design Tint Technologies channel URL. */
+export const INSTAGRAM_URL = "https://www.instagram.com/design_tint_technologies/";
 export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/channel/UCA32SqrQkk7I4TGNxz-nxXg";
 
 export type VideoProject = {
@@ -127,7 +127,7 @@ export function VideoCard({ video, onPlay }: { video: VideoProject; onPlay: () =
         ) : (
           <img
             src={video.thumbnail}
-            alt={`${video.title} — ${video.category} video thumbnail by Design Tint Studio`}
+            alt={`${video.title} — ${video.category} video thumbnail by Design Tint Technologies`}
             loading="lazy"
             decoding="async"
             onError={() => setBroken(true)}
@@ -238,7 +238,7 @@ export function VideoShowcase() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-4 text-muted-foreground">
-              Explore our AI-powered videos, creative concepts, festival specials and visual stories created by Design Tint Studio.
+              Explore our AI-powered videos, creative concepts, festival specials and visual stories created by Design Tint Technologies.
             </p>
           </Reveal>
         </div>
@@ -255,13 +255,13 @@ export function VideoShowcase() {
           <div className="mt-16 glass rounded-3xl p-8 md:p-10 text-center">
             <h3 className="text-2xl md:text-3xl font-bold">More Videos Coming Soon.</h3>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
-              Explore more creative AI videos, cinematic concepts, festival specials and visual stories from Design Tint Studio.
+              Explore more creative AI videos, cinematic concepts, festival specials and visual stories from Design Tint Technologies.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={YOUTUBE_CHANNEL}
                 target="_blank" rel="noopener noreferrer"
-                aria-label="More videos on the Design Tint Studio YouTube channel"
+                aria-label="More videos on the Design Tint Technologies YouTube channel"
                 className="inline-flex items-center gap-2 rounded-full btn-glow px-6 py-3 text-sm font-semibold"
               >
                 <Youtube className="h-4 w-4" /> More Videos

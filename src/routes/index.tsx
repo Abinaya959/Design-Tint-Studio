@@ -120,14 +120,14 @@ function Navbar({ theme, toggle }: { theme: "light" | "dark"; toggle: () => void
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
         <div className={`glass flex items-center justify-between px-4 sm:px-6 py-3 ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#home" className="flex items-center gap-2 min-w-0">
-            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 shrink-0 object-contain" />
+            <img src={LOGO_URL} alt="Design Tint Technologies Logo" className="h-10 w-10 shrink-0 object-contain" />
             <span className="font-display text-lg font-bold tracking-tight truncate">
-              Design<span className="gradient-text">Tint</span> Studio
+              Design<span className="gradient-text">Tint</span> Technologies
             </span>
           </a>
           <nav className="hidden lg:flex items-center gap-1">
             {NAV.map((n) => (
-              <a key={n.href} href={n.href} className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition">
+              <a key={n.href} href={n.href} className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition">
                 {n.label}
               </a>
             ))}
@@ -214,7 +214,7 @@ function Hero() {
           <div className="relative">
             <div className="absolute inset-0 -z-10 rounded-[3rem] bg-[image:var(--gradient-brand)] opacity-20 blur-3xl" />
             <div className="glass p-4 sm:p-6 rounded-[2rem]">
-              <img src={heroImg} alt="Design Tint Studio creative work — laptop, phone and branding" className="w-full h-auto animate-float" width={1200} height={1024} />
+              <img src={heroImg} alt="Design Tint Technologies creative work — laptop, phone and branding" className="w-full h-auto animate-float" width={1200} height={1024} />
             </div>
             <div className="absolute -bottom-6 -left-6 glass px-4 py-3 rounded-2xl flex items-center gap-2 shadow-[var(--shadow-soft)]">
               <Zap className="h-4 w-4 text-primary" />
@@ -249,7 +249,7 @@ function About() {
               Where <span className="gradient-text">creativity</span> meets technology.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Design Tint Studio is a creative digital agency focused on helping startups, entrepreneurs, and businesses grow online. We combine creativity with technology to build websites, strong brand identities, engaging content, and powerful digital experiences.
+              Design Tint Technologies is a creative digital agency focused on helping startups, entrepreneurs, and businesses grow online. We combine creativity with technology to build websites, strong brand identities, engaging content, and powerful digital experiences.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               From modern websites to AI-generated videos and complete branding solutions, we provide everything needed to build a memorable digital presence.
@@ -764,12 +764,12 @@ const TESTIMONIALS = [
   {
     name: "Dr. V. Sathivel",
     role: "Founder, Santhi Polyclinic",
-    text: "Design Tint Studio developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
+    text: "Design Tint Technologies developed our clinic website exactly as we envisioned. The website is modern, responsive, professional, and easy for our patients to navigate. Their attention to detail and commitment throughout the project made the entire experience smooth and highly satisfactory.",
   },
   {
     name: "Kala",
     role: "Owner, Fancy Corner",
-    text: "Working with Design Tint Studio has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
+    text: "Working with Design Tint Technologies has significantly improved our Instagram presence. Their creative posters, engaging content, and promotional strategies helped us present our products professionally and attract more customer attention. Their creativity and timely delivery exceeded our expectations.",
   },
 ];
 function Testimonials() {
@@ -893,7 +893,7 @@ function Contact() {
             <div className="mt-8 grid gap-3">
               {[
                 { icon: Mail, label: "contact.designtintstudio@gmail.com", href: "mailto:contact.designtintstudio@gmail.com" },
-                { icon: Instagram, label: "@design_tint_studio", href: "https://instagram.com/design_tint_studio" },
+                { icon: Instagram, label: "@design_tint_technologies", href: "https://www.instagram.com/design_tint_technologies/" },
                 { icon: MapPin, label: "Tamil Nadu, India" },
               ].map((c) => (
                 <a
@@ -983,9 +983,7 @@ const PRICING = [
   { emoji: "📱", icon: Megaphone, title: "Content & Social Media", price: "₹1,000 – ₹3,500",
     features: ["Social Media Promotion", "Content Writing", "Caption Writing", "Post Design", "Content Creation"] },
   { emoji: "🤖", icon: Brain, title: "AI Services", price: "₹2,000 – ₹10,000", subtitle: "Custom pricing based on your business requirements.",
-    shortDescription: "Smart AI-powered solutions to automate your business, improve customer engagement, and save time.",
-    services: ["Custom AI Agent", "AI Business Assistant", "AI Website Chatbot", "AI WhatsApp Assistant", "AI Customer Support", "AI Instagram Content Planner", "AI Post & Caption Generator", "AI Offer Suggestion System", "AI Email & WhatsApp Reply Generator", "AI Content Creation", "AI Workflow Automation"],
-    features: ["Personalized AI Solutions", "Fast Setup", "Business Automation", "Easy Integration", "Scalable for Any Business"] },
+    features: ["AI-powered content creation", "AI videos and creative visuals", "AI solutions for businesses"] },
 ];
 
 function Pricing() {
@@ -1005,7 +1003,7 @@ function Pricing() {
         </div>
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {PRICING.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.08}>
+            <Reveal key={p.title} delay={i * 0.08} className="h-full">
               <motion.div
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -1026,25 +1024,12 @@ function Pricing() {
                     <span className="text-2xl" aria-hidden>{p.emoji}</span>
                   </div>
                   <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
-                  {p.shortDescription && (
-                    <p className="mt-2 text-sm text-muted-foreground">{p.shortDescription}</p>
-                  )}
                   <div className="mt-4">
                     <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground">Starting Price</div>
                     <div className="mt-1 text-2xl font-display font-extrabold gradient-text">{p.price}</div>
                     {p.subtitle && <div className="mt-2 text-xs text-muted-foreground">{p.subtitle}</div>}
                   </div>
                   <div className="mt-5 flex-1 flex flex-col gap-4">
-                    {p.services && (
-                      <ul className="grid gap-2 text-sm text-muted-foreground">
-                        {p.services.map((s) => (
-                          <li key={s} className="flex items-start gap-2">
-                            <span className="h-4 w-4 mt-0.5 text-primary shrink-0 text-xs leading-4">•</span>
-                            <span>{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                     <ul className="grid gap-2 text-sm text-muted-foreground">
                       {p.features.map((f) => (
                         <li key={f} className="flex items-start gap-2">
@@ -1123,8 +1108,8 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2">
-            <img src={LOGO_URL} alt="Design Tint Studio Logo" className="h-10 w-10 object-contain" />
-            <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Studio</span>
+            <img src={LOGO_URL} alt="Design Tint Technologies Logo" className="h-10 w-10 object-contain" />
+            <span className="font-display text-lg font-bold">Design<span className="gradient-text">Tint</span> Technologies</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">Design • Develop • Grow</p>
         </div>
@@ -1149,7 +1134,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © 2026 Design Tint Studio. All Rights Reserved.
+        © 2026 Design Tint Technologies. All Rights Reserved.
       </div>
     </footer>
   );
