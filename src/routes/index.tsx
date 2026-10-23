@@ -1033,16 +1033,6 @@ function Pricing() {
                     {p.subtitle && <div className="mt-2 text-xs text-muted-foreground">{p.subtitle}</div>}
                   </div>
                   <div className="mt-5 flex-1 flex flex-col gap-4">
-                    {p.services && (
-                      <ul className="grid gap-2 text-sm text-muted-foreground">
-                        {p.services.map((s) => (
-                          <li key={s} className="flex items-start gap-2">
-                            <span className="h-4 w-4 mt-0.5 text-primary shrink-0 text-xs leading-4">•</span>
-                            <span>{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                     <ul className="grid gap-2 text-sm text-muted-foreground">
                       {p.features.map((f) => (
                         <li key={f} className="flex items-start gap-2">
