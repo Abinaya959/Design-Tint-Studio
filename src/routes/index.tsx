@@ -1125,9 +1125,19 @@ function Footer() {
         <div>
           <h4 className="font-bold">Follow</h4>
           <div className="mt-4 flex gap-2">
-            {[Instagram, Linkedin, Mail].map((I, idx) => (
-              <a key={idx} href="#contact" className="grid h-10 w-10 place-items-center rounded-full glass hover:-translate-y-0.5 transition" aria-label="social">
-                <I className="h-4 w-4" />
+            {[
+              { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/design_tint_technologies/" },
+              { Icon: Linkedin, label: "LinkedIn", href: "#contact" },
+              { Icon: Mail, label: "Email", href: "#contact" },
+            ].map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="grid h-10 w-10 place-items-center rounded-full glass hover:-translate-y-0.5 transition"
+                aria-label={label}
+              >
+                <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
